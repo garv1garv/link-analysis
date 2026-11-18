@@ -55,3 +55,4 @@ def test_html_cleaner():
     assert "Leading Cloud Solutions" in result["cleaned_text"]
     assert "alert" not in result["cleaned_text"]
     assert "Copyright" not in result["cleaned_text"]
+

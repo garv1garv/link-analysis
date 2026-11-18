@@ -91,3 +91,4 @@ async def analyze_link(payload: LinkAnalysisRequest):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"An unexpected error occurred during analysis: {str(exc)}",
         )
+

@@ -26,3 +26,4 @@ class CompetitorService:
 
         data["competitors"] = competitors
         return data
+

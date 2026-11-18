@@ -57,3 +57,4 @@ def extract_and_clean_html(html_content: str, max_chars: int = 15000) -> Dict[st
         "headings": headings[:30],  # top 30 headings
         "cleaned_text": truncated_text,
     }
+

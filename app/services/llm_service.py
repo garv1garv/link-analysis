@@ -146,16 +146,22 @@ PAGE CONTENT BODY:
             )
 
         try:
-            import google.generativeai as genai
+            from google import genai
+            from google.genai import types
 
-            genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(
-                model_name=settings.GEMINI_MODEL,
-                system_instruction=SYSTEM_PROMPT,
-                generation_config={"response_mime_type": "application/json"},
+            client = genai.Client(
+                api_key=api_key,
+                http_options=types.HttpOptions(api_version="v1beta"),
             )
+            full_prompt = f"{SYSTEM_PROMPT}\n\n{prompt}"
 
-            response = await model.generate_content_async(prompt)
+            response = await client.aio.models.generate_content(
+                model=settings.GEMINI_MODEL,
+                contents=full_prompt,
+                config=types.GenerateContentConfig(
+                    response_mime_type="application/json",
+                ),
+            )
             raw_text = response.text.strip()
             return json.loads(raw_text)
 
@@ -209,3 +215,4 @@ PAGE CONTENT BODY:
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail=f"OpenAI API error: {str(e)}",
             )
+

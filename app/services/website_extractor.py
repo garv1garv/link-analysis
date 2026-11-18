@@ -65,3 +65,4 @@ class WebsiteExtractor:
                     status_code=status.HTTP_502_BAD_GATEWAY,
                     detail=f"Failed to connect to target website: {str(exc)}",
                 )
+

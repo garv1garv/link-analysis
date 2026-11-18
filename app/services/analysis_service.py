@@ -152,3 +152,4 @@ class AnalysisService:
             brand=brand,
             analysis=full_analysis,
         )
+
