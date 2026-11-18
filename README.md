@@ -369,6 +369,246 @@ Full structured JSON response returned from the API — showing brand info, comp
 
 > **Live Demo:** The API was tested against `https://www.nvidia.com/en-in/` and returned a **200 OK** with 34,166 bytes of structured analysis data in real-time using Gemini 2.5 Flash.
 
+### Full Example Output — NVIDIA (`https://www.nvidia.com/en-in/`)
+
+<details>
+<summary>Click to expand full JSON response</summary>
+
+```json
+{
+  "success": true,
+  "website": "https://www.nvidia.com/en-in/",
+  "brand": {
+    "name": "NVIDIA",
+    "category": "Artificial Intelligence Computing, GPUs, HPC, Gaming, Autonomous Vehicles, Robotics",
+    "summary": "NVIDIA is a world leader in AI computing, inventing the GPU and driving advances across multiple high-tech sectors including AI, HPC, gaming, creative design, autonomous vehicles, and robotics through its full-stack hardware, software, and platforms."
+  },
+  "analysis": {
+    "competitor_analysis": {
+      "brand_overview": "NVIDIA stands as a pioneering force in accelerated computing and AI, delivering a comprehensive ecosystem of hardware (GPUs), software (platforms, libraries, AI models), and infrastructure. The company empowers developers, enterprises, and researchers across diverse industries to push the boundaries of AI, simulation, high-performance computing, and autonomous systems.",
+      "main_business_category": "AI Computing, GPU Manufacturing, Advanced Software Development, High-Performance Computing",
+      "main_products_services": [
+        "GPUs (GeForce RTX, DGX Spark)",
+        "AI Platforms (DRIVE AGX, Isaac, Omniverse)",
+        "AI Software (CUDA-Q, OpenShell, Dynamo Recipes)",
+        "Digital Twins & Simulation Technologies",
+        "Agentic AI Solutions"
+      ],
+      "competitors": [
+        {
+          "name": "AMD",
+          "main_service": "High-performance GPUs (Radeon Instinct), CPUs (EPYC, Ryzen)",
+          "target_market": "Gaming, professional visualization, data centers, HPC, AI acceleration",
+          "strengths": "Strong CPU portfolio, competitive GPU offerings, open-source software initiatives (ROCm), aggressive pricing strategy.",
+          "gaps_weaknesses": "Smaller market share in AI/data center GPUs compared to NVIDIA, less mature full-stack AI software ecosystem and industry-specific platforms."
+        },
+        {
+          "name": "Intel",
+          "main_service": "CPUs (Xeon), Data Center AI accelerators (Gaudi), HPC platforms",
+          "target_market": "Enterprise data centers, HPC, AI training/inference, general computing",
+          "strengths": "Dominant CPU market share, strong enterprise relationships, significant R&D budget, integrated solutions, broad developer ecosystem.",
+          "gaps_weaknesses": "Lags in discrete GPU performance for high-end AI/gaming, newer entrant to dedicated AI accelerator market against established players like NVIDIA."
+        },
+        {
+          "name": "Qualcomm",
+          "main_service": "AI-enabled System-on-Chips (SoCs), automotive platforms (Snapdragon Ride), edge AI solutions",
+          "target_market": "Automotive (autonomous driving), robotics, edge computing, mobile devices",
+          "strengths": "Leading position in mobile and automotive SoCs, expertise in low-power high-performance edge AI, established partnerships in automotive sector.",
+          "gaps_weaknesses": "Less focused on large-scale data center AI training, ecosystem for developers in specific areas might be smaller compared to NVIDIA's broader platforms."
+        }
+      ],
+      "brand_competitive_advantages": [
+        "Pioneering leadership in GPU and AI computing technology.",
+        "Comprehensive full-stack ecosystem: hardware, software, and AI models across diverse industries.",
+        "Broad industry penetration in gaming, HPC, automotive, robotics, data centers, and creative design.",
+        "Significant innovation in agentic AI, physical AI, and digital twin simulation via Omniverse.",
+        "Strong global partnerships with industry leaders, governments, and research institutions."
+      ],
+      "market_positioning_opportunities": [
+        "Expand sovereign AI initiatives by leveraging existing and new regional partnerships to deepen local AI infrastructure.",
+        "Solidify leadership in agentic AI development by positioning NVIDIA as the foundational platform for safe, scalable, and specialized AI agents.",
+        "Drive wider adoption of Physical AI and Digital Twin technologies by further integrating Omniverse into industrial and retail applications.",
+        "Strengthen edge AI market presence for industrial robotics through continued advancements of Jetson and Isaac platforms."
+      ]
+    },
+    "target_search_queries": [
+      {
+        "query": "NVIDIA DGX Spark enterprise AI platform",
+        "platforms": ["Google", "LinkedIn"],
+        "search_intent": "Commercial Investigation",
+        "business_relevance": "Directly targets high-value enterprise customers seeking advanced AI computing infrastructure.",
+        "target_audience": "AI researchers, data scientists, enterprise IT decision-makers, HPC professionals."
+      },
+      {
+        "query": "NVIDIA Omniverse digital twin simulation benefits",
+        "platforms": ["Google", "X"],
+        "search_intent": "Information Gathering",
+        "business_relevance": "Captures interest in a core innovative offering, promoting digital twin technology use cases.",
+        "target_audience": "Engineers, industrial designers, manufacturing companies, architects, metaverse developers."
+      },
+      {
+        "query": "NVIDIA DRIVE AGX autonomous vehicle development",
+        "platforms": ["Google", "LinkedIn"],
+        "search_intent": "Product/Service Research",
+        "business_relevance": "Targets the critical automotive sector, attracting autonomous driving solution developers.",
+        "target_audience": "Automotive engineers, autonomous vehicle developers, car manufacturers, robotics companies."
+      },
+      {
+        "query": "Build secure AI agents with NVIDIA OpenShell",
+        "platforms": ["Google", "LinkedIn"],
+        "search_intent": "How-to/Tutorial",
+        "business_relevance": "Highlights unique agentic AI capability, appealing to technical and security-conscious users.",
+        "target_audience": "AI developers, cybersecurity professionals, enterprise IT security teams."
+      },
+      {
+        "query": "GeForce RTX 50 series gaming performance benchmarks",
+        "platforms": ["Google", "Instagram", "Facebook"],
+        "search_intent": "Product Research",
+        "business_relevance": "Engages NVIDIA's vast consumer gaming audience, driving brand awareness and GPU sales.",
+        "target_audience": "PC gamers, esports enthusiasts, content creators, hardware reviewers."
+      }
+    ],
+    "seo_improvements": {
+      "primary_keyword": "AI Computing Leadership",
+      "secondary_keywords": [
+        "GPU acceleration",
+        "AI platforms",
+        "autonomous vehicles AI",
+        "digital twins simulation",
+        "high performance computing"
+      ],
+      "long_tail_keywords": [
+        "NVIDIA DGX Spark for enterprise AI",
+        "develop AI factory digital twins Omniverse",
+        "secure AI agents with NVIDIA OpenShell",
+        "NVIDIA DRIVE AGX Thor for robotaxis",
+        "NVIDIA Isaac ROS for agentic robotics"
+      ],
+      "relevant_business_keywords": [
+        "GPU", "AI", "HPC", "gaming", "robotics",
+        "autonomous vehicles", "data center", "cybersecurity",
+        "simulation", "Omniverse", "Jetson", "CUDA"
+      ],
+      "recommended_title": "NVIDIA: World Leader in AI Computing, GPUs & Accelerated Innovation",
+      "meta_description": "NVIDIA pioneers AI computing, GPUs, HPC, and platforms for gaming, autonomous vehicles, robotics, and digital twins. Discover our innovations.",
+      "supporting_content": [
+        "The Future of Agentic AI: Building Secure and Scalable Agents",
+        "Transforming Industries with Physical AI and NVIDIA Omniverse Digital Twins",
+        "Accelerating Autonomous Driving with NVIDIA DRIVE AGX and AI",
+        "NVIDIA's Role in Advancing Sovereign AI and Global Ecosystems",
+        "Leveraging HPC and AI for Scientific Discovery and Industrial Innovation"
+      ]
+    },
+    "top_services": [
+      {
+        "service_name": "AI Computing Platforms & GPUs",
+        "description": "Foundational hardware (RTX, DGX GPUs) and software platforms (CUDA, AI models) for AI development, training, and inference at any scale.",
+        "target_industry": "Data Centers, Enterprise AI, Research & Academia, Cloud Providers",
+        "target_customer": "Data scientists, AI developers, IT managers, researchers.",
+        "main_benefit": "Enables high-speed, scalable AI development driving computational efficiency and innovation."
+      },
+      {
+        "service_name": "Autonomous Vehicle & Robotics AI Solutions",
+        "description": "Full-stack platforms (DRIVE AGX, Isaac, Jetson) for developing, testing, and deploying autonomous vehicles and intelligent robotic systems.",
+        "target_industry": "Automotive, Logistics, Manufacturing, Robotics, Smart Cities",
+        "target_customer": "Car manufacturers, robotaxi companies, robotics developers, industrial automation firms.",
+        "main_benefit": "Accelerates safe deployment of autonomous systems, enhancing safety and operational efficiency."
+      },
+      {
+        "service_name": "Digital Twin & Simulation (NVIDIA Omniverse)",
+        "description": "Physically accurate simulation and interactive digital twin creation for design, engineering, and operational optimization.",
+        "target_industry": "Manufacturing, AEC, Retail, Media & Entertainment, Industrial Design",
+        "target_customer": "Engineers, industrial designers, manufacturing leaders, e-commerce businesses.",
+        "main_benefit": "Faster product development and reduced costs through virtual prototyping and 3D visualization."
+      },
+      {
+        "service_name": "Agentic AI & Cybersecurity Solutions",
+        "description": "Building, running, and securing AI agents at scale using OpenShell and Agent Toolkit for safe, governable AI deployments.",
+        "target_industry": "Enterprise IT, Cybersecurity, Media & Entertainment, Financial Services",
+        "target_customer": "AI developers, enterprise security teams, IT architects.",
+        "main_benefit": "Enhances safety, reliability, and security of AI agents, ensuring compliance and preventing unintended behaviors."
+      },
+      {
+        "service_name": "High-Performance Computing (HPC) Solutions",
+        "description": "Hardware, software (NVIDIA HPC SDK, CUDA-Q), and platforms for processing complex data at high speeds for scientific advancement.",
+        "target_industry": "Scientific Research, Healthcare, Public Sector, Energy, Climate Modeling",
+        "target_customer": "Researchers, scientists, government agencies, universities.",
+        "main_benefit": "Fuels breakthroughs in scientific discovery and enables complex simulations at unprecedented speed."
+      }
+    ],
+    "target_audience": {
+      "primary_audience": [
+        "AI Developers & Researchers",
+        "Enterprise IT & Data Center Managers",
+        "Automotive Manufacturers & Autonomous Vehicle Developers",
+        "Manufacturing & Industrial Companies"
+      ],
+      "secondary_audience": [
+        "Gamers & Creative Professionals",
+        "Scientists & Academics",
+        "Government & Public Sector Organizations",
+        "Cybersecurity Professionals"
+      ],
+      "industry_segments": [
+        "Artificial Intelligence", "High-Performance Computing", "Gaming",
+        "Automotive (Autonomous Vehicles)", "Robotics", "Data Centers",
+        "Cybersecurity", "Manufacturing", "Retail", "Healthcare",
+        "Scientific Research", "Media & Entertainment"
+      ],
+      "business_types": [
+        "Large Enterprises", "Startups", "Research Institutions",
+        "Government Agencies", "Cloud Service Providers", "OEMs", "System Integrators"
+      ],
+      "customer_profiles": [
+        "CTO / VP of Engineering: Seeking cutting-edge AI and simulation solutions for innovation.",
+        "AI/ML Engineer / Data Scientist: Needs powerful hardware and comprehensive software ecosystems.",
+        "Automotive R&D Lead: Requires robust platforms for autonomous vehicle development at scale.",
+        "Industrial Designer / Manufacturing Engineer: Interested in digital twins for product development.",
+        "PC Gamer / Content Creator: Desires top-tier graphics and AI-enhanced features."
+      ],
+      "location_geographical_focus": "Global, with strong focus on Korea, Europe (Germany, UK), and America — promoting sovereign AI initiatives.",
+      "customer_needs_challenges": [
+        "High-performance computing power for complex AI/HPC workloads.",
+        "Challenges developing, testing, and deploying safe and scalable AI agents.",
+        "Demand for physically accurate simulations to accelerate innovation and reduce costs.",
+        "Full-stack integrated solutions for autonomous vehicle development.",
+        "Robust cybersecurity for AI applications and agent-based systems."
+      ],
+      "potential_customer_interests": [
+        "Artificial Intelligence", "Machine Learning", "Deep Learning", "GPU Acceleration",
+        "Robotics", "Autonomous Driving", "Digital Twins", "Simulation & Modeling",
+        "Metaverse Technologies", "High-Performance Computing", "Cybersecurity for AI",
+        "Gaming Technology", "Ray Tracing", "Generative AI"
+      ],
+      "recommended_marketing_segments": [
+        {
+          "audience": "AI Innovators & Developers",
+          "business_type": "Enterprise, Startups, Research Institutions",
+          "requirement": "Scalable AI platforms, robust dev tools, frameworks for agentic AI, open model access."
+        },
+        {
+          "audience": "Industrial Transformation Leaders",
+          "business_type": "Manufacturing, Automotive, Logistics, Retail",
+          "requirement": "Digital twin solutions, physical AI for robotics, autonomous systems for efficiency and safety."
+        },
+        {
+          "audience": "HPC & Data Center Architects",
+          "business_type": "Cloud Providers, Government, Research Institutions",
+          "requirement": "Leading-edge HPC, sovereign AI infrastructure, energy-efficient and secure data processing."
+        },
+        {
+          "audience": "Gaming & Creative Enthusiasts",
+          "business_type": "Consumers, Content Creators, Game Developers",
+          "requirement": "Next-gen GPUs, ray tracing, DLSS, AI-powered creation tools, immersive gaming experiences."
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
 ---
 
 ## 8. Running Automated Tests
