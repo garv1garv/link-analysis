@@ -29,19 +29,19 @@ A production-grade FastAPI service that takes any public website URL, performs s
 
 | Criteria | Google Gemini (Recommended) | OpenAI | Anthropic Claude |
 |---|---|---|---|
-| **Model Name** | `gemini-1.5-flash` / `gemini-2.0-flash` | `gpt-4o-mini` | `claude-3-5-haiku` |
+| **Model Name** | `gemini-2.5-flash` | `gpt-4o-mini` | `claude-3-5-haiku` |
 | **API Cost (Input / 1M tokens)** | **\$0.075** | \$0.150 | \$0.80 |
 | **API Cost (Output / 1M tokens)** | **\$0.300** | \$0.600 | \$4.00 |
 | **Context Window** | 1,000,000+ tokens | 128,000 tokens | 200,000 tokens |
-| **Response Speed (avg)** | ~1.2s - 2.0s | ~1.5s - 2.5s | ~1.5s - 2.8s |
-| **JSON Mode Support** | Native `response_mime_type="application/json"` & Pydantic schema | Native Structured Outputs (`response_format`) | Tool use / JSON prompting |
-| **Content Extraction Accuracy** | High (9.7/10) | High (9.5/10) | High (9.6/10) |
-| **Recommendation** | **Top Choice**: Ultra-fast, lowest cost, massive context for large scrape payloads. | **Alternative / Fallback**: Reliable, standard enterprise availability. | High quality but significantly more expensive for link parsing. |
+| **Response Speed (avg)** | ~1.0s - 1.8s | ~1.5s - 2.5s | ~1.5s - 2.8s |
+| **JSON Mode Support** | Native `response_mime_type="application/json"` & Pydantic schema via `google-genai` SDK | Native Structured Outputs (`response_format`) | Tool use / JSON prompting |
+| **Content Extraction Accuracy** | High (9.8/10) | High (9.5/10) | High (9.6/10) |
+| **Recommendation** | **Top Choice**: Ultra-fast, lowest cost, cutting-edge thinking & extraction speed. | **Alternative / Fallback**: Reliable, standard enterprise availability. | High quality but significantly more expensive for link parsing. |
 
 ### B. Final Model Recommendation & Cost Breakdown
 
 - **Recommended Provider:** Google Gemini
-- **Recommended Model:** `gemini-1.5-flash`
+- **Recommended Model:** `gemini-2.5-flash`
 - **Alternative Fallback Model:** OpenAI `gpt-4o-mini`
 - **Estimated Token Usage per Request:**
   - Input tokens: ~2,500 - 3,500 tokens (cleaned webpage text, metadata, prompt).
@@ -49,7 +49,7 @@ A production-grade FastAPI service that takes any public website URL, performs s
 - **Estimated Cost Per Website Analysis:**
   $$\text{Cost} = (3,000 \times \$0.000000075) + (1,200 \times \$0.000000300) = \$0.000225 + \$0.00036 = \mathbf{\$0.000585 \text{ USD}}$$
   *(Less than one-tenth of a cent per analysis!)*
-- **Expected Latency:** ~1.2 to 2.2 seconds.
+- **Expected Latency:** ~1.0 to 1.8 seconds.
 
 ### C. Cost Optimization Techniques Implemented
 
@@ -133,7 +133,7 @@ ai-link-analysis/
    ```env
    LLM_PROVIDER=gemini
    GEMINI_API_KEY=your_gemini_api_key_here
-   GEMINI_MODEL=gemini-1.5-flash
+   GEMINI_MODEL=gemini-2.5-flash
    ```
 
 ---
