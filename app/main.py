@@ -2,7 +2,9 @@ import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from pathlib import Path
+from fastapi.responses import JSONResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.config import settings
 from app.schemas import LinkAnalysisRequest, LinkAnalysisResponse
@@ -14,6 +16,8 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
 )
 logger = logging.getLogger("link_analysis_api")
+
+STATIC_DIR = Path(__file__).parent / "static"
 
 
 @asynccontextmanager
@@ -44,9 +48,16 @@ app.add_middleware(
 
 analysis_service = AnalysisService()
 
+# Mount static folder if exists
+if STATIC_DIR.exists():
+    app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
-@app.get("/", tags=["Health"])
+
+@app.get("/", tags=["UI & Health"], summary="Web Dashboard UI")
 async def root():
+    index_file = STATIC_DIR / "index.html"
+    if index_file.exists():
+        return FileResponse(index_file)
     return {
         "status": "online",
         "service": "AI-Powered Website Link Analysis API",
@@ -55,7 +66,7 @@ async def root():
     }
 
 
-@app.get("/health", tags=["Health"])
+@app.get("/health", tags=["UI & Health"])
 async def health_check():
     return {"status": "healthy"}
 

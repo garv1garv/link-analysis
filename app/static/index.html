@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Website Link Analysis Intelligence Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .gradient-hero {
+      background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, rgba(248, 250, 252, 0) 70%);
+    }
+    .loader-pulse {
+      animation: pulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .4; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
+
+  <!-- Navbar -->
+  <header class="border-b border-slate-200 bg-white/80 sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-200">
+          <i class="fa-solid fa-chart-line text-lg"></i>
+        </div>
+        <div>
+          <span class="font-bold text-lg bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">LinkScope AI</span>
+          <span class="text-xs bg-indigo-100 text-indigo-700 font-semibold px-2 py-0.5 rounded-full ml-2">Gemini 2.5 Flash</span>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="/docs" target="_blank" class="text-sm font-medium text-slate-600 hover:text-indigo-600 flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-book text-xs"></i> API Docs
+        </a>
+        <a href="https://github.com/garv1garv/link-analysis" target="_blank" class="text-sm font-medium text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3.5 py-1.5 rounded-lg flex items-center gap-2 transition">
+          <i class="fa-brands fa-github text-base"></i> GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero & Search Input Section -->
+  <main class="flex-grow gradient-hero">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-4">
+        <i class="fa-solid fa-bolt text-indigo-500"></i> Instant 5-Section Market Intelligence
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+        Analyze Any Website with <span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Next-Gen AI</span>
+      </h1>
+      <p class="mt-4 text-slate-600 max-w-2xl mx-auto text-base sm:text-lg">
+        Extract instant competitor breakdowns, high-intent social search queries, SEO keyword audits, core service models, and target audience segmentation in seconds.
+      </p>
+
+      <!-- Input Form -->
+      <form id="analyzeForm" class="mt-8 max-w-3xl mx-auto">
+        <div class="flex flex-col sm:flex-row gap-2.5 p-2 rounded-2xl bg-white shadow-xl shadow-indigo-100 border border-slate-200 focus-within:ring-2 focus-within:ring-indigo-500 transition-all">
+          <div class="relative flex-grow flex items-center pl-4">
+            <i class="fa-solid fa-globe text-slate-400 text-lg mr-3"></i>
+            <input 
+              type="url" 
+              id="urlInput" 
+              required 
+              placeholder="Enter website URL (e.g., https://stripe.com or https://nvidia.com)"
+              class="w-full bg-transparent text-slate-800 placeholder-slate-400 focus:outline-none text-sm sm:text-base py-2.5"
+            />
+          </div>
+          <button 
+            type="submit" 
+            id="submitBtn"
+            class="bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold px-7 py-3 rounded-xl shadow-md shadow-indigo-200 transition-all flex items-center justify-center gap-2 whitespace-nowrap active:scale-95"
+          >
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>Run Analysis</span>
+          </button>
+        </div>
+
+        <!-- Preset Quick Links -->
+        <div class="flex items-center justify-center gap-2 mt-4 text-xs text-slate-500 flex-wrap">
+          <span class="font-medium text-slate-400">Quick Try:</span>
+          <button type="button" onclick="setPreset('https://stripe.com')" class="hover:text-indigo-600 underline">Stripe</button>
+          <span>•</span>
+          <button type="button" onclick="setPreset('https://www.nvidia.com/en-in/')" class="hover:text-indigo-600 underline">NVIDIA</button>
+          <span>•</span>
+          <button type="button" onclick="setPreset('https://linear.app')" class="hover:text-indigo-600 underline">Linear</button>
+          <span>•</span>
+          <button type="button" onclick="setPreset('https://canva.com')" class="hover:text-indigo-600 underline">Canva</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="hidden max-w-3xl mx-auto px-4 py-16 text-center">
+      <div class="inline-flex p-4 rounded-2xl bg-indigo-50 border border-indigo-100 mb-5">
+        <div class="w-12 h-12 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-xl animate-spin">
+          <i class="fa-solid fa-circle-notch"></i>
+        </div>
+      </div>
+      <h3 class="text-xl font-bold text-slate-800 mb-2">Analyzing Website Content...</h3>
+      <p id="loadingStatusText" class="text-slate-500 text-sm max-w-md mx-auto">
+        Safely resolving DNS, scraping semantic content, and invoking Gemini 2.5 Flash for deep market analysis.
+      </p>
+      <div class="w-64 h-1.5 bg-slate-200 rounded-full mx-auto mt-6 overflow-hidden">
+        <div class="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full animate-pulse w-3/4"></div>
+      </div>
+    </div>
+
+    <!-- Error Alert -->
+    <div id="errorState" class="hidden max-w-3xl mx-auto px-4 py-6">
+      <div class="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 flex items-start gap-3">
+        <i class="fa-solid fa-triangle-exclamation text-rose-600 text-lg mt-0.5"></i>
+        <div class="flex-grow">
+          <h4 class="font-bold text-sm">Analysis Failed</h4>
+          <p id="errorMessage" class="text-sm mt-0.5 text-rose-700"></p>
+        </div>
+        <button onclick="document.getElementById('errorState').classList.add('hidden')" class="text-rose-400 hover:text-rose-600">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="resultsSection" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      
+      <!-- Brand Overview Card -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-sm mb-8 border border-slate-200">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-6 mb-6">
+          <div>
+            <div class="flex items-center gap-3">
+              <h2 id="resBrandName" class="text-3xl font-extrabold text-slate-900 tracking-tight"></h2>
+              <span id="resBrandCategory" class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700"></span>
+            </div>
+            <a id="resWebsiteUrl" href="" target="_blank" class="text-xs text-indigo-600 hover:underline mt-1 inline-flex items-center gap-1">
+              <span></span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </a>
+          </div>
+          <button onclick="copyFullJson()" class="self-start md:self-auto text-xs font-medium px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg flex items-center gap-2 transition">
+            <i class="fa-regular fa-copy"></i> Copy Full JSON
+          </button>
+        </div>
+        <p id="resBrandSummary" class="text-slate-700 text-base leading-relaxed"></p>
+      </div>
+
+      <!-- Navigation Tabs for 5 Sections -->
+      <div class="flex space-x-2 border-b border-slate-200 mb-8 overflow-x-auto pb-1" id="sectionTabs">
+        <button onclick="switchTab('competitors')" id="tab-competitors" class="tab-btn px-4 py-2.5 font-semibold text-sm rounded-t-lg border-b-2 border-indigo-600 text-indigo-600 flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-chess-knight"></i> 1. Competitors
+        </button>
+        <button onclick="switchTab('queries')" id="tab-queries" class="tab-btn px-4 py-2.5 font-semibold text-sm rounded-t-lg border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-magnifying-glass"></i> 2. Target Queries (5)
+        </button>
+        <button onclick="switchTab('seo')" id="tab-seo" class="tab-btn px-4 py-2.5 font-semibold text-sm rounded-t-lg border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-bullseye"></i> 3. SEO Improvements
+        </button>
+        <button onclick="switchTab('services')" id="tab-services" class="tab-btn px-4 py-2.5 font-semibold text-sm rounded-t-lg border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-cubes"></i> 4. Top Services
+        </button>
+        <button onclick="switchTab('audience')" id="tab-audience" class="tab-btn px-4 py-2.5 font-semibold text-sm rounded-t-lg border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-users"></i> 5. Target Audience
+        </button>
+      </div>
+
+      <!-- Section 1: Competitors Content -->
+      <div id="content-competitors" class="tab-content space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Strengths & Advantages -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h3 class="font-bold text-slate-900 text-base flex items-center gap-2 mb-4 text-emerald-700">
+              <i class="fa-solid fa-shield-halved"></i> Your Brand Competitive Advantages
+            </h3>
+            <ul id="resBrandAdvantages" class="space-y-2 text-sm text-slate-600"></ul>
+          </div>
+          <!-- Positioning Opportunities -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h3 class="font-bold text-slate-900 text-base flex items-center gap-2 mb-4 text-indigo-700">
+              <i class="fa-solid fa-rocket"></i> Market Positioning Opportunities
+            </h3>
+            <ul id="resBrandOpportunities" class="space-y-2 text-sm text-slate-600"></ul>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-slate-900 pt-4 flex items-center gap-2">
+          <i class="fa-solid fa-arrows-split-up-and-left text-indigo-600"></i> Identified Competitors
+        </h3>
+        <div id="resCompetitorsList" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+      </div>
+
+      <!-- Section 2: Search Queries Content -->
+      <div id="content-queries" class="tab-content hidden space-y-4">
+        <div class="bg-blue-50 border border-blue-200 text-blue-900 p-4 rounded-xl text-xs sm:text-sm flex items-center gap-3">
+          <i class="fa-solid fa-circle-info text-blue-600 text-base"></i>
+          <span>Queries crafted across Google Search, LinkedIn, X (Twitter), Facebook, and Instagram with qualitative search intent and target personas.</span>
+        </div>
+        <div id="resQueriesList" class="grid grid-cols-1 gap-4"></div>
+      </div>
+
+      <!-- Section 3: SEO Improvements Content -->
+      <div id="content-seo" class="tab-content hidden space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <div>
+              <span class="text-xs uppercase font-bold text-slate-400 tracking-wider">Recommended SEO Title</span>
+              <p id="resSeoTitle" class="text-lg font-bold text-slate-900 mt-1"></p>
+            </div>
+            <div>
+              <span class="text-xs uppercase font-bold text-slate-400 tracking-wider">Recommended Meta Description</span>
+              <p id="resSeoMeta" class="text-sm text-slate-600 mt-1 leading-relaxed"></p>
+            </div>
+            <div>
+              <span class="text-xs uppercase font-bold text-slate-400 tracking-wider">Primary Target Keyword</span>
+              <div class="mt-1">
+                <span id="resSeoPrimaryKw" class="px-3 py-1 rounded-md text-sm font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <div>
+              <span class="text-xs uppercase font-bold text-slate-400 tracking-wider">Secondary Keywords</span>
+              <div id="resSeoSecondaryKw" class="flex flex-wrap gap-1.5 mt-2"></div>
+            </div>
+            <div>
+              <span class="text-xs uppercase font-bold text-slate-400 tracking-wider">High-Intent Long-Tail Keywords</span>
+              <div id="resSeoLongTailKw" class="flex flex-wrap gap-1.5 mt-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Supporting Content Suggestions -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <h3 class="font-bold text-slate-900 text-base flex items-center gap-2 mb-4">
+            <i class="fa-solid fa-newspaper text-indigo-600"></i> Recommended Supporting Content & Landing Pages
+          </h3>
+          <div id="resSeoSupportingContent" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+        </div>
+      </div>
+
+      <!-- Section 4: Top Services Content -->
+      <div id="content-services" class="tab-content hidden space-y-6">
+        <div id="resServicesList" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+      </div>
+
+      <!-- Section 5: Target Audience Content -->
+      <div id="content-audience" class="tab-content hidden space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h4 class="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2 text-indigo-600">
+              <i class="fa-solid fa-user-check"></i> Primary Audience
+            </h4>
+            <ul id="resAudiencePrimary" class="space-y-1.5 text-sm text-slate-600"></ul>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h4 class="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2 text-slate-700">
+              <i class="fa-solid fa-users-viewfinder"></i> Secondary Audience
+            </h4>
+            <ul id="resAudienceSecondary" class="space-y-1.5 text-sm text-slate-600"></ul>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h4 class="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2 text-slate-700">
+              <i class="fa-solid fa-location-dot"></i> Geographical Focus
+            </h4>
+            <p id="resAudienceGeo" class="text-sm text-slate-600"></p>
+          </div>
+        </div>
+
+        <!-- Marketing Segments Table -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <div class="p-6 border-b border-slate-100">
+            <h3 class="font-bold text-slate-900 text-base">Recommended Marketing Segments</h3>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="bg-slate-50 text-slate-500 font-semibold border-b border-slate-200">
+                <tr>
+                  <th class="p-4">Audience Segment</th>
+                  <th class="p-4">Business Type</th>
+                  <th class="p-4">Core Requirement</th>
+                </tr>
+              </thead>
+              <tbody id="resAudienceSegmentsTable" class="divide-y divide-slate-100 text-slate-700"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p>AI-Powered Website Link Analysis API & UI • FastAPI & Gemini 2.5 Flash</p>
+      <p class="flex items-center gap-3">
+        <a href="/docs" class="hover:text-indigo-600">Swagger API</a>
+        <span>•</span>
+        <a href="https://github.com/garv1garv/link-analysis" target="_blank" class="hover:text-indigo-600">GitHub Repository</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Script logic -->
+  <script>
+    let currentData = null;
+
+    function setPreset(url) {
+      document.getElementById('urlInput').value = url;
+      document.getElementById('analyzeForm').dispatchEvent(new Event('submit'));
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('border-indigo-600', 'text-indigo-600');
+        btn.classList.add('border-transparent', 'text-slate-500');
+      });
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+      });
+
+      const activeBtn = document.getElementById(`tab-${tabId}`);
+      activeBtn.classList.add('border-indigo-600', 'text-indigo-600');
+      activeBtn.classList.remove('border-transparent', 'text-slate-500');
+      document.getElementById(`content-${tabId}`).classList.remove('hidden');
+    }
+
+    document.getElementById('analyzeForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const url = document.getElementById('urlInput').value.trim();
+      if (!url) return;
+
+      // Reset states
+      document.getElementById('errorState').classList.add('hidden');
+      document.getElementById('resultsSection').classList.add('hidden');
+      document.getElementById('loadingState').classList.remove('hidden');
+      document.getElementById('submitBtn').disabled = true;
+
+      try {
+        const response = await fetch('/link-analysis', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.detail || 'Failed to analyze website');
+        }
+
+        currentData = data;
+        renderResults(data);
+      } catch (err) {
+        document.getElementById('errorMessage').textContent = err.message;
+        document.getElementById('errorState').classList.remove('hidden');
+      } finally {
+        document.getElementById('loadingState').classList.add('hidden');
+        document.getElementById('submitBtn').disabled = false;
+      }
+    });
+
+    function renderResults(data) {
+      const { brand, analysis, website } = data;
+
+      // Brand Info
+      document.getElementById('resBrandName').textContent = brand.name;
+      document.getElementById('resBrandCategory').textContent = brand.category;
+      document.getElementById('resBrandSummary').textContent = brand.summary;
+      const webLink = document.getElementById('resWebsiteUrl');
+      webLink.href = website;
+      webLink.querySelector('span').textContent = website;
+
+      // Section 1: Competitors
+      const comp = analysis.competitor_analysis;
+      document.getElementById('resBrandAdvantages').innerHTML = comp.brand_competitive_advantages
+        .map(a => `<li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-500 text-xs mt-1"></i><span>${a}</span></li>`).join('');
+
+      document.getElementById('resBrandOpportunities').innerHTML = comp.market_positioning_opportunities
+        .map(o => `<li class="flex items-start gap-2"><i class="fa-solid fa-arrow-trend-up text-indigo-500 text-xs mt-1"></i><span>${o}</span></li>`).join('');
+
+      document.getElementById('resCompetitorsList').innerHTML = comp.competitors
+        .map(c => `
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <h4 class="font-extrabold text-slate-900 text-base">${c.name}</h4>
+                <span class="text-[10px] font-semibold bg-slate-100 text-slate-600 px-2 py-0.5 rounded">${c.target_market || 'Competitor'}</span>
+              </div>
+              <p class="text-xs text-indigo-600 font-medium mb-3">${c.main_service}</p>
+              <div class="space-y-2 text-xs">
+                <div>
+                  <span class="font-bold text-slate-700">Strengths:</span>
+                  <p class="text-slate-600 mt-0.5">${c.strengths}</p>
+                </div>
+                <div>
+                  <span class="font-bold text-rose-700">Gaps & Weaknesses:</span>
+                  <p class="text-slate-600 mt-0.5">${c.gaps_weaknesses}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+      // Section 2: Queries
+      document.getElementById('resQueriesList').innerHTML = analysis.target_search_queries
+        .map((q, idx) => `
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-indigo-600">#${idx + 1}</span>
+                <span class="font-bold text-slate-900 text-base">"${q.query}"</span>
+              </div>
+              <p class="text-xs text-slate-500">${q.business_relevance}</p>
+              <div class="flex items-center gap-2 text-xs text-slate-400 pt-1">
+                <span><i class="fa-solid fa-bullseye"></i> Intent: <b>${q.search_intent}</b></span>
+                <span>•</span>
+                <span><i class="fa-solid fa-user"></i> Target: <b>${q.target_audience}</b></span>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              ${q.platforms.map(p => `<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">${getPlatformIcon(p)} ${p}</span>`).join('')}
+            </div>
+          </div>
+        `).join('');
+
+      // Section 3: SEO
+      const seo = analysis.seo_improvements;
+      document.getElementById('resSeoTitle').textContent = seo.recommended_title;
+      document.getElementById('resSeoMeta').textContent = seo.meta_description;
+      document.getElementById('resSeoPrimaryKw').textContent = seo.primary_keyword;
+
+      document.getElementById('resSeoSecondaryKw').innerHTML = seo.secondary_keywords
+        .map(kw => `<span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-700">${kw}</span>`).join('');
+
+      document.getElementById('resSeoLongTailKw').innerHTML = seo.long_tail_keywords
+        .map(kw => `<span class="px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md text-xs font-medium border border-indigo-100">${kw}</span>`).join('');
+
+      document.getElementById('resSeoSupportingContent').innerHTML = seo.supporting_content
+        .map(sc => `
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs font-medium text-slate-700 flex items-center gap-2">
+            <i class="fa-regular fa-file-lines text-indigo-500 text-sm"></i>
+            <span>${sc}</span>
+          </div>
+        `).join('');
+
+      // Section 4: Services
+      document.getElementById('resServicesList').innerHTML = analysis.top_services
+        .map(s => `
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <h4 class="font-extrabold text-slate-900 text-base">${s.service_name}</h4>
+                <span class="text-[10px] bg-indigo-50 text-indigo-700 font-semibold px-2 py-0.5 rounded border border-indigo-100">${s.target_industry}</span>
+              </div>
+              <p class="text-sm text-slate-600 mb-4">${s.description}</p>
+              <div class="space-y-1.5 text-xs">
+                <div><span class="font-bold text-slate-700">Target Customer:</span> <span class="text-slate-600">${s.target_customer}</span></div>
+                <div><span class="font-bold text-emerald-700">Main Benefit:</span> <span class="text-slate-600">${s.main_benefit}</span></div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+      // Section 5: Target Audience
+      const aud = analysis.target_audience;
+      document.getElementById('resAudiencePrimary').innerHTML = aud.primary_audience
+        .map(a => `<li>• ${a}</li>`).join('');
+      document.getElementById('resAudienceSecondary').innerHTML = aud.secondary_audience
+        .map(a => `<li>• ${a}</li>`).join('');
+      document.getElementById('resAudienceGeo').textContent = aud.location_geographical_focus || 'Global / Flexible';
+
+      document.getElementById('resAudienceSegmentsTable').innerHTML = aud.recommended_marketing_segments
+        .map(seg => `
+          <tr class="hover:bg-slate-50">
+            <td class="p-4 font-semibold text-slate-900">${seg.audience}</td>
+            <td class="p-4">${seg.business_type}</td>
+            <td class="p-4 text-indigo-600">${seg.requirement}</td>
+          </tr>
+        `).join('');
+
+      document.getElementById('resultsSection').classList.remove('hidden');
+      document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function getPlatformIcon(platform) {
+      const p = platform.toLowerCase();
+      if (p.includes('google')) return '<i class="fa-brands fa-google text-red-500"></i>';
+      if (p.includes('linkedin')) return '<i class="fa-brands fa-linkedin text-blue-600"></i>';
+      if (p.includes('x') || p.includes('twitter')) return '<i class="fa-brands fa-x-twitter text-slate-800"></i>';
+      if (p.includes('instagram')) return '<i class="fa-brands fa-instagram text-pink-600"></i>';
+      if (p.includes('facebook')) return '<i class="fa-brands fa-facebook text-blue-700"></i>';
+      return '<i class="fa-solid fa-share-nodes"></i>';
+    }
+
+    function copyFullJson() {
+      if (!currentData) return;
+      navigator.clipboard.writeText(JSON.stringify(currentData, null, 2));
+      alert('Full analysis JSON copied to clipboard!');
+    }
+  </script>
+</body>
+</html>
