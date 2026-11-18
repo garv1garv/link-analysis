@@ -355,7 +355,23 @@ curl -X POST "http://localhost:4000/link-analysis" \
 
 ---
 
-## 7. Running Automated Tests
+## 7. Screenshots & Demo
+
+### Swagger UI — Request (`POST /link-analysis`)
+Submitting a request with an NVIDIA URL via the interactive Swagger docs at `http://localhost:4000/docs`:
+
+![Swagger Request](screenshots/swagger-request.png)
+
+### Swagger UI — Response (HTTP 200)
+Full structured JSON response returned from the API — showing brand info, competitor analysis, SEO improvements, services, and audience data:
+
+![Swagger Response](screenshots/swagger-response.jpg)
+
+> **Live Demo:** The API was tested against `https://www.nvidia.com/en-in/` and returned a **200 OK** with 34,166 bytes of structured analysis data in real-time using Gemini 2.5 Flash.
+
+---
+
+## 8. Running Automated Tests
 
 Run the full pytest suite:
 ```bash
@@ -392,3 +408,4 @@ docker run -p 4000:4000 --env-file .env ai-link-analysis
    - `PORT`: `4000`
 4. Set start command to `uvicorn app.main:app --host 0.0.0.0 --port 4000`.
 5. Access your live application at `https://<your-service-domain>/docs`.
+
