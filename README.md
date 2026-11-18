@@ -357,6 +357,11 @@ curl -X POST "http://localhost:4000/link-analysis" \
 
 ## 7. Screenshots & Demo
 
+### Interactive Web Dashboard (`http://localhost:4000/`)
+A clean, responsive web application for end-users to analyze websites visually with tabs for all 5 intelligence sections:
+
+![Web Dashboard](screenshots/web-dashboard.jpg)
+
 ### Swagger UI — Request (`POST /link-analysis`)
 Submitting a request with an NVIDIA URL via the interactive Swagger docs at `http://localhost:4000/docs`:
 
